@@ -6,13 +6,22 @@ using namespace std;
 
 struct dO
 {
-    float d ;
+    float d;
     float Ho;
-    float Xo;
-    float Yo;
-    float rd=0,05*d;
+    float Xo=0;
+    float Yo=Ho;
+    float rd0=0,05*d;
 };
 
+struct dD
+{
+    float d;
+    float Hd;
+    float Xd=d;
+    float Yd;
+    float rdd=0,025d;
+
+};
 
 
 
