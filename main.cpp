@@ -285,6 +285,10 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
                                 y1=DisparoO.Yo + Vy0*(t+2) -(0.5*g*pow((t+2),2));
                                 x2=DisparoD.Xd-Vx02*t;
                                 y2=DisparoD.Yd + Vy02*t -(0.5*g*pow(t,2));
+
+                                if(sqrt(pow((DisparoO.Xo-x2),2)+pow((DisparoO.Yo-y2),2))> DisparoD.rd)
+                                {
+
                                 if(sqrt(pow((x1-x2),2)+pow((y1-y2),2))< DisparoO.trd)
                                 {
                                     if(y<0) {y=0;}
@@ -294,6 +298,7 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
                                     Impacta=false;
 
                                     break;
+                                }
                                 }
                                     if (y2<0){
                                         break;
@@ -356,6 +361,14 @@ int main()
         Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
         Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
         TercerCasoDisparo(DisparoO,DisparoD);
+    }
+    case 4:
+{
+    dO DisparoO;
+    dD DisparoD;
+    Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+    Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
+    CuartoCasoDisparo(DisparoO,DisparoD);
     }
 
 
