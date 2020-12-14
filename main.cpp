@@ -16,6 +16,7 @@ struct dO
     float Xo=0;
     float Yo=Ho;
     float rd0=0.05*d;
+    string estado="ofensa";
 };
 
 struct dD
@@ -25,10 +26,11 @@ struct dD
     float Xd=d;
     float Yd=Hd;
     float rdd=0.025d;
+    string estado="defensa";
 
 };
 
-int Imprimir(int angulo,int VelocidadInicial,float x,float y,int t)
+void ImprimirImpacto(int angulo,int VelocidadInicial,float x,float y,int t)
 {
     cout << "Impacto con un angulo de " << angulo << " grados" << endl;
     cout << "Impacto con velocidad incial " << VelocidadInicial << endl;
@@ -37,6 +39,14 @@ int Imprimir(int angulo,int VelocidadInicial,float x,float y,int t)
     cout << "Con tiempo: " << t << endl;
     cout << endl;
 }
+
+void Posicion_de_canon(float x,float y,string estado)
+{
+    cout <<"EL cañon de "<<estado<<endl;
+    cout <<"Se encuentra en las coordenadas(x,y): ("<<x<<","<<y<<")"<<endl;
+    cout <<endl;
+}
+
 
 
 int PrimercasoDisparo(dO DisparoO,dD DisparoD)
@@ -67,8 +77,9 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
                 if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rd0)
                 {
                     if(y<0) y=0;
-                    Imprimir(angulo,V0,x,y,t);
+                    ImprimirImpacto(angulo,V0,x,y,t);
                     c=c+1;
+                    V0=V0+20;
                     break;
                 }
                 if (y<0){
@@ -81,6 +92,9 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
             }
 
 
+        }
+        if(c==3){
+            break;
         }
     }
 }
@@ -111,6 +125,8 @@ int main()
 {
     dO DisparoO;
     dD DisparoD;
+    Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+    Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
     PrimercasoDisparo(DisparoO,DisparoD);
 
     return 0;
