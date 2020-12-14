@@ -126,7 +126,6 @@ int main()
     dO DisparoO;
     dD DisparoD;
     Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
-    Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
     PrimercasoDisparo(DisparoO,DisparoD);
 
     return 0;
