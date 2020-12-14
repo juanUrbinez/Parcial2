@@ -464,7 +464,7 @@ void QuintoCasoDisparo(dO DisparoO,dD DisparoD)
 
 int main()
 {
-    cout<<"Cual caso va a emular 1-2-3-4-5"<<endl;
+    cout<<"Cuál simulación desea simular 1-2-3-4-5"<<endl;
     int op=0;
     cin>>op;
     switch (op)
