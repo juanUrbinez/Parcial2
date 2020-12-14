@@ -114,14 +114,14 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
          for(angulo=0;angulo <90;angulo++)
         {
 
-            Vx0= V*cos((angulo)*M_PI/180); //calculando velocidad en x
+            Vx0= -V*cos((angulo)*M_PI/180); //calculando velocidad en x
             Vy0= V*sin((angulo)*M_PI/180); //calculando velocidad en y
 
             x=0.0;
             y=0.0;
             for(t=0;;t++)
             {
-                x=-DisparoD.Xd+Vx0*t;
+                x=DisparoD.Xd+Vx0*t;
                 y=DisparoD.Yd + Vy0*t -(0.5*g*pow(t,2));
 
 
