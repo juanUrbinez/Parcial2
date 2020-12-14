@@ -446,11 +446,8 @@ void QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                 }
 
                 if(c==3)
-                {
-                cout<<endl;
-                cout<<"no hay mas posible trayectorias para parar el cañon"<<endl;
                 break;
-                }
+
             }
 
 
