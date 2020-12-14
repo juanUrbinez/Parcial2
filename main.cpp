@@ -13,7 +13,7 @@ struct dO
     float Ho=100;
     float Xo=0;
     float Yo=Ho;
-    float rd0=0,05*d;
+    float rd0=0.05*d;
 };
 
 struct dD
@@ -22,18 +22,18 @@ struct dD
     float Hd=200;
     float Xd=d;
     float Yd=Hd;
-    float rdd=0,025d;
+    float rdd=0.025d;
 
 };
 
 
 int PrimercasoDisparo(dO DisparoO,dD DisparoD)
 {
-    srand(time(NULL))
+    srand(time(NULL));
+    int V0=0;
     V0=rand() %100+1;
     float x,y;
     float Vx0,Vy0;
-    float V0;
     int t=0;
     int angulo;
     int V=V0;
@@ -43,6 +43,13 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
         {
             Vx0*cos(angulo*M_PI/180); //calculando velocidad en x
             Vy0*sin(angulo*M_PI/180); //calculando velocidad en y
+
+            x=0.0;
+            y=0.0;
+            for(t=0;;t++)
+            {
+
+            }
 
         }
     }
@@ -73,6 +80,7 @@ int main()
 {
     dO DisparoO;
     dD DisparoD;
+    PrimercasoDisparo(DisparoO,DisparoD);
 
     return 0;
 }
