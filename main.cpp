@@ -43,7 +43,7 @@ void ImprimirImpacto(int angulo,int VelocidadInicial,float x,float y,int t)
     cout << "Impacto con velocidad incial " << VelocidadInicial << endl;
     cout << "Impacto con posicion x: " << x << endl;
     cout << "Impacto con posicion y: " << y << endl;
-    cout << "En el instante de{{ tiempo: " << t << endl;
+    cout << "En el instante de tiempo: " << t << endl;
     cout << endl;
 }
 
@@ -337,7 +337,6 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
         int angulo;
         int V=V0;
         int c=0;
-        for (V=V0; ;V+=5)
 
         for (V=V0; ;V+=5)
         {
@@ -386,10 +385,11 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                     //ImprimirImpacto(angulo,V,x1,y1,t);
                                     //cout<<"Defensa"<<endl;
                                     //ImprimirImpacto(angulo2,V,x2,y2,t);
-                                    V=V+4;
+                                    V=V+1;
                                     Impacta=false;
                                     ImpactaD=true;
                                     break;
+                                    c=c+1;
                                 }
                                     if (y2<0){
                                         break;
@@ -417,7 +417,8 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                     ImprimirImpacto(angulo3,V,x2,y2,t);
                                     cout<<"______________________________________"<<endl;
                                     ImpactaD=false;
-                                    V=V+10;
+                                    V=V+1;
+                                    t=t+1;
 
 
                                 }
@@ -432,7 +433,7 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                         }
 
                     }
-                    if(c==3)
+                    if(t==3)
                     break;
                 }
 
@@ -444,7 +445,9 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
 
             if(c==3)
             break;
+
         }
+
     }
 
 }
