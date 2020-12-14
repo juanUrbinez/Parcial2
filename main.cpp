@@ -43,7 +43,7 @@ void ImprimirImpacto(int angulo,int VelocidadInicial,float x,float y,int t)
     cout << "Impacto con velocidad incial " << VelocidadInicial << endl;
     cout << "Impacto con posicion x: " << x << endl;
     cout << "Impacto con posicion y: " << y << endl;
-    cout << "En el instante de tiempo: " << t << endl;
+    cout << "En el instante de{{ tiempo: " << t << endl;
     cout << endl;
 }
 
@@ -419,6 +419,7 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                     ImpactaD=false;
                                     V=V+10;
 
+
                                 }
                                 if (y2<0){
                                     break;
@@ -426,11 +427,13 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                             }
                         }
 
-
+                        if(c==3)
+                        break;
                         }
 
                     }
-
+                    if(c==3)
+                    break;
                 }
 
                 if(c==3)
