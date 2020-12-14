@@ -62,13 +62,13 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
     int angulo;
     int V=V0;
     int c=0;
-    for (V=V0; ;V0+=5)
+    for (V=V0; ;V+=5)
     {
         //cout<<"aaaaa"<<endl;
         for(angulo=0;angulo <90;angulo++)
         {
-            Vx0= V0*cos(angulo*M_PI/180); //calculando velocidad en x
-            Vy0= V0*sin(angulo*M_PI/180); //calculando velocidad en y
+            Vx0= V*cos(angulo*M_PI/180); //calculando velocidad en x
+            Vy0= V*sin(angulo*M_PI/180); //calculando velocidad en y
 
             x=0.0;
             y=0.0;
@@ -79,27 +79,21 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
                 if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rdo)
                 {
                     if(y<0) y=0;
-                    ImprimirImpacto(angulo,V0,x,y,t);
+                    ImprimirImpacto(angulo,V,x,y,t);
                     c=c+1;
-                    V0=V0+50;
+                    V=V+50;
                     break;
                 }
                 if (y<0){
                     break;
                 }
             }
-            if(c==3)
-            {{
-                break;
-            }
-
-
-        }
-        if(c==3){
+            if(c==3)           
             break;
         }
+        if(c==3)
+        break;
     }
-}
 }
 
 int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
@@ -153,6 +147,7 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
 }
 }
 
+
 int TercerCasoDisparo()
 {
 
@@ -171,10 +166,6 @@ int QuintoCasoDisparo()
 
 int main()
 {
-    dO DisparoO;
-    dD DisparoD;
-    Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
-    Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
     cout<<"Cual caso va a emular 1-2-3-4-5"<<endl;
     int op=0;
     cin>>op;
@@ -182,11 +173,22 @@ int main()
     {
     case 1:
     {
+        dO DisparoO;
+        dD DisparoD;
+        Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+        Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
         PrimercasoDisparo(DisparoO,DisparoD);
+        break;
     }
     case 2:
     {
+        dO DisparoO;
+        dD DisparoD;
+        Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+        Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
         SegundoCasoDisparo(DisparoO,DisparoD);
+        break;
+
     }
 
 
