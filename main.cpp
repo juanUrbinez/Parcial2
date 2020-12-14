@@ -327,15 +327,18 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     {
         bool Impacta=false;
+        bool ImpactaD=false;
         srand(time(NULL));
         int V0=0;
         V0=rand() %100+1;
-        float x,y,x1,y1,y2,x2;
-        float Vx0,Vy0,Vx02,Vy02;
+        float x,y,x1,y1,y2,x2,x3,y3;
+        float Vx0,Vy0,Vx02,Vy02,Vx03,Vy03;
         int t=0;
         int angulo;
         int V=V0;
         int c=0;
+        for (V=V0; ;V+=5)
+
         for (V=V0; ;V+=5)
         {
             for(angulo=0;angulo <90;angulo++)
@@ -404,14 +407,17 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                 x2=DisparoD.Xd-Vx02*(t+1);
                                 y2=DisparoD.Yd + Vy02*(t+1) -(0.5*g*pow((t+1),2));
                                 x3=Vx03*t;
-                                y3=DisparoO.Yo + Vy03*t+ -(0.5*g*pow(t+,2));
+                                y3=DisparoO.Yo + Vy03*t -(0.5*g*pow(t,2));
                                 if(sqrt(pow((x2-x3),2)+pow((y2-y3),2))< DisparoO.Municion_especial)
                                 {
-                                    if (y<0) {y=0}
+                                    if (y<0) {y=0;}
                                     cout<<"Municion especial de la ofensa"<<endl;
-                                    ImprimirImpacto(angulo3,V,X3,Y3,t);
+                                    ImprimirImpacto(angulo3,V,x3,y3,t);
                                     cout<<"Defensa"<<endl;
                                     ImprimirImpacto(angulo3,V,x2,y2,t);
+                                    ImpactaD=false;
+                                    V=V+50;
+
                                 }
                             }
                         }
