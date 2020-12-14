@@ -3,6 +3,8 @@
 #include <cmath>
 #include <cstdlib>
 
+#define g 9.81
+
 using namespace std;
 
 
@@ -26,6 +28,16 @@ struct dD
 
 };
 
+int Imprimir(int angulo,int VelocidadInicial,float x,float y,int t)
+{
+    cout << "Impacto con un angulo de " << angulo << " grados" << endl;
+    cout << "Impacto con velocidad incial " << VelocidadInicial << endl;
+    cout << "Impacto con posicion x: " << x << endl;
+    cout << "Impacto con posicion y: " << y << endl;
+    cout << "Con tiempo: " << t << endl;
+    cout << endl;
+}
+
 
 int PrimercasoDisparo(dO DisparoO,dD DisparoD)
 {
@@ -37,22 +49,41 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
     int t=0;
     int angulo;
     int V=V0;
+    int c=0;
     for (V=V0; ;V0+=5)
+
     {
         for(angulo=0;angulo <90;angulo++)
         {
-            Vx0*cos(angulo*M_PI/180); //calculando velocidad en x
-            Vy0*sin(angulo*M_PI/180); //calculando velocidad en y
+            Vx0= V0*cos(angulo*M_PI/180); //calculando velocidad en x
+            Vy0= V0*sin(angulo*M_PI/180); //calculando velocidad en y
 
             x=0.0;
             y=0.0;
             for(t=0;;t++)
             {
-
+                x=Vx0*t;
+                y=DisparoO.Yo + Vy0*t -(0.5*g*pow(t,2));
+                if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rd0)
+                {
+                    if(y<0) y=0;
+                    Imprimir(angulo,V0,x,y,t);
+                    c=c+1;
+                    break;
+                }
+                if (y<0){
+                    break;
+                }
             }
+            if(c==3)
+            {{
+                break;
+            }
+
 
         }
     }
+}
 }
 
 int SegundoCasoDisparo()
