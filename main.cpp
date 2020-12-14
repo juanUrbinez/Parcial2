@@ -293,7 +293,9 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
                                 if(sqrt(pow((x1-x2),2)+pow((y1-y2),2))< DisparoO.trd)
                                 {
                                     if(y<0) {y=0;}
+                                    cout<<"Ofensa"<<endl;
                                     ImprimirImpacto(angulo,V,x1,y1,t);
+                                    cout<<"Defensa"<<endl;
                                     ImprimirImpacto(angulo2,V,x2,y2,t);
                                     V=V+50;
                                     Impacta=false;
@@ -486,15 +488,18 @@ int main()
         Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
         Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
         TercerCasoDisparo(DisparoO,DisparoD);
+        break;
     }
     case 4:
-{
+    {
     dO DisparoO;
     dD DisparoD;
     Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
     Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
     CuartoCasoDisparo(DisparoO,DisparoD);
+    break;
     }
+
     case 5:
     {
         dO DisparoO;
@@ -502,16 +507,11 @@ int main()
         Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
         Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
         QuintoCasoDisparo(DisparoO,DisparoD);
-    }
-
-
-
         break;
-
     }
 
 
-
+}
 
 
     return 0;
