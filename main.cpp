@@ -17,6 +17,7 @@ struct dO
     float Yo=Ho;
     float rd=0.05*d;
     float trd=0.075*d;
+    float Municion_especial=0.005*d;
     string estado="ofensa";
 };
 
@@ -322,7 +323,7 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
 
 }
 
-int QuintoCasoDisparo()
+int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     {
         bool Impacta=false;
@@ -384,7 +385,7 @@ int QuintoCasoDisparo()
                                     ImprimirImpacto(angulo2,V,x2,y2,t);
                                     V=V+50;
                                     Impacta=false;
-                                    ImpactaD=
+                                    ImpactaD=true;
                                     break;
                                 }
                                     if (y2<0){
@@ -392,6 +393,31 @@ int QuintoCasoDisparo()
                                     }
 
                             }
+                        if(ImpactaD)
+                        {
+                        for(int angulo3=0;(angulo3 <90);angulo3++)
+                        {
+                            Vx03= V*cos(angulo3*M_PI/180);
+                            Vy03= V*sin(angulo3*M_PI/180);
+                            for(t=0;;t++)
+                            {
+                                x2=DisparoD.Xd-Vx02*(t+1);
+                                y2=DisparoD.Yd + Vy02*(t+1) -(0.5*g*pow((t+1),2));
+                                x3=Vx03*t;
+                                y3=DisparoO.Yo + Vy03*t+ -(0.5*g*pow(t+,2));
+                                if(sqrt(pow((x2-x3),2)+pow((y2-y3),2))< DisparoO.Municion_especial)
+                                {
+                                    if (y<0) {y=0}
+                                    cout<<"Municion especial de la ofensa"<<endl;
+                                    ImprimirImpacto(angulo3,V,X3,Y3,t);
+                                    cout<<"Defensa"<<endl;
+                                    ImprimirImpacto(angulo3,V,x2,y2,t);
+                                }
+                            }
+                        }
+
+
+                        }
 
                     }
 
@@ -455,7 +481,11 @@ int main()
     }
     case 5:
     {
-
+        dO DisparoO;
+        dD DisparoD;
+        Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+        Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
+        QuintoCasoDisparo(DisparoO,DisparoD);
     }
 
 
