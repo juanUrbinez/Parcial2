@@ -56,7 +56,7 @@ void Posicion_de_canon(float x,float y,string estado)
 
 
 
-int PrimercasoDisparo(dO DisparoO,dD DisparoD)
+void PrimercasoDisparo(dO DisparoO,dD DisparoD)
 {
     srand(time(NULL));
     int V0=0;
@@ -101,7 +101,7 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
     }
 }
 
-int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
+void SegundoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     srand(time(NULL));
     int V0=0;
@@ -149,18 +149,19 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
 }
 
 
-int TercerCasoDisparo(dO DisparoO,dD DisparoD)
+void TercerCasoDisparo(dO DisparoO,dD DisparoD)
 {
     bool Impacta=false;
     srand(time(NULL));
     int V0=0;
-    V0=rand() %100+1;
+    V0=rand() %50+1;
     float x,y,x1,y1,y2,x2;
     float Vx0,Vy0,Vx02,Vy02;
     int t=0;
     int angulo;
     int V=V0;
     int c=0;
+    int c2=0;
     for (V=V0; ;V+=5)
     {
         for(angulo=0;angulo <90;angulo++)
@@ -179,10 +180,9 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
                 if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rd)
                 {
                     if(y<0) y=0;
-                    //ImprimirImpacto(angulo,V,x,y,t);
                     Impacta=true;
                     c=c+1;
-                    V=V+10;
+                    V=V+50;
                     break;
                 }
                 if (y<0){
@@ -208,7 +208,9 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
                                 ImprimirImpacto(angulo,V,x1,y1,t);
                                 cout<<"Defensa"<<endl;
                                 ImprimirImpacto(angulo2,V,x2,y2,t);
-                                V=V+50;
+                                cout<<"_________________"<<endl;
+                                V=V+2;
+                                c2=c2+1;
                                 Impacta=false;
                                 break;
                             }
@@ -216,8 +218,12 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
                                     break;
                                 }
 
-                        }
+                        if (c2==3)break;
+                       }
+
                 }
+
+
 
             }
 
@@ -233,7 +239,7 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
 }
 
 
-int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
+void CuartoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     {
         bool Impacta=false;
@@ -264,7 +270,6 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
                     if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rd)
                     {
                         if(y<0) y=0;
-                        //ImprimirImpacto(angulo,V,x,y,t);
                         Impacta=true;
                         c=c+1;
                         V=V+10;
@@ -297,6 +302,7 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
                                     ImprimirImpacto(angulo,V,x1,y1,t);
                                     cout<<"Defensa"<<endl;
                                     ImprimirImpacto(angulo2,V,x2,y2,t);
+                                    cout<<"_______________"<<endl;
                                     V=V+50;
                                     Impacta=false;
 
@@ -325,7 +331,7 @@ int CuartoCasoDisparo(dO DisparoO,dD DisparoD)
 
 }
 
-int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
+void QuintoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     {
         bool Impacta=false;
@@ -420,7 +426,7 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                     cout<<"______________________________________"<<endl;
                                     ImpactaD=false;
                                     V=V+1;
-                                    t=t+1;
+
 
 
                                 }
@@ -430,17 +436,21 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                             }
                         }
 
-                        if(c==3)
-                        break;
+
+
                         }
 
                     }
-                    if(t==3)
-                    break;
+
+
                 }
 
                 if(c==3)
+                {
+                cout<<endl;
+                cout<<"no hay mas posible trayectorias para parar el cañon"<<endl;
                 break;
+                }
             }
 
 
