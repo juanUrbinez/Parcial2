@@ -43,7 +43,7 @@ void ImprimirImpacto(int angulo,int VelocidadInicial,float x,float y,int t)
     cout << "Impacto con velocidad incial " << VelocidadInicial << endl;
     cout << "Impacto con posicion x: " << x << endl;
     cout << "Impacto con posicion y: " << y << endl;
-    cout << "Con tiempo: " << t << endl;
+    cout << "En el instante de tiempo: " << t << endl;
     cout << endl;
 }
 
@@ -330,7 +330,7 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
         bool ImpactaD=false;
         srand(time(NULL));
         int V0=0;
-        V0=rand() %100+1;
+        V0=rand() %20+1;
         float x,y,x1,y1,y2,x2,x3,y3;
         float Vx0,Vy0,Vx02,Vy02,Vx03,Vy03;
         int t=0;
@@ -382,11 +382,11 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                 if(sqrt(pow((x1-x2),2)+pow((y1-y2),2))< DisparoO.trd)
                                 {
                                     if(y<0) {y=0;}
-                                    cout<<"Ofensa"<<endl;
-                                    ImprimirImpacto(angulo,V,x1,y1,t);
-                                    cout<<"Defensa"<<endl;
-                                    ImprimirImpacto(angulo2,V,x2,y2,t);
-                                    V=V+50;
+                                    //cout<<"Ofensa"<<endl;
+                                    //ImprimirImpacto(angulo,V,x1,y1,t);
+                                    //cout<<"Defensa"<<endl;
+                                    //ImprimirImpacto(angulo2,V,x2,y2,t);
+                                    V=V+4;
                                     Impacta=false;
                                     ImpactaD=true;
                                     break;
@@ -415,9 +415,13 @@ int QuintoCasoDisparo(dO DisparoO,dD DisparoD)
                                     ImprimirImpacto(angulo3,V,x3,y3,t);
                                     cout<<"Defensa"<<endl;
                                     ImprimirImpacto(angulo3,V,x2,y2,t);
+                                    cout<<"______________________________________"<<endl;
                                     ImpactaD=false;
-                                    V=V+50;
+                                    V=V+10;
 
+                                }
+                                if (y2<0){
+                                    break;
                                 }
                             }
                         }
