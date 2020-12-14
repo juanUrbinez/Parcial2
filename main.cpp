@@ -11,11 +11,12 @@ using namespace std;
 
 struct dO
 {
-    float d=600;
+    float d=800;
     float Ho=150;
     float Xo=0;
     float Yo=Ho;
     float rd=0.05*d;
+    float trd=0.075*d;
     string estado="ofensa";
 };
 
@@ -26,6 +27,7 @@ struct dD
     float Xd=d;
     float Yd=Hd;
     float rd=0.025*d;
+    float trd=0.075*d;
 
 
 
@@ -148,11 +150,12 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
 
 int TercerCasoDisparo(dO DisparoO,dD DisparoD)
 {
+    bool Impacta=false;
     srand(time(NULL));
     int V0=0;
-    V0=rand() %100+1;
-    float x,y;
-    float Vx0,Vy0;
+    V0=rand() %20+1;
+    float x,y,x1,y1,y2,x2;
+    float Vx0,Vy0,Vx02,Vy02;
     int t=0;
     int angulo;
     int V=V0;
@@ -175,7 +178,7 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
                 {
                     if(y<0) y=0;
                     ImprimirImpacto(angulo,V,x,y,t);
-
+                    Impacta=true;
                     c=c+1;
                     V=V+10;
                     break;
@@ -184,9 +187,38 @@ int TercerCasoDisparo(dO DisparoO,dD DisparoD)
                     break;
                 }
             }
+            if (Impacta){
+            for(int angulo2=0;angulo2 <90;angulo2++)
+            {
+                Vx02= V*cos(angulo*M_PI/180);
+                Vy02= V*sin(angulo*M_PI/180);
+            for(t=0;;t++)
+            {
+                x1=Vx0*(t+2);
+                y1=DisparoO.Yo + Vy0*(t+2) -(0.5*g*pow((t+2),2));
+                x2=DisparoD.Xd-Vx02*t;
+                y2=DisparoD.Yd + Vy02*t -(0.5*g*pow(t,2));
+                if(sqrt(pow((x1-x2),2)+pow((y1-y2),2))< DisparoO.trd)
+                {
+                    if(y<0) y=0;
+                    ImprimirImpacto(angulo,V,x1,y1,t);
+                    ImprimirImpacto(angulo,V,x2,y2,t);
+                    break;
+                }
+                if (y<0){
+                    break;
+                }
+
+            }
+            }
+            Impacta=false;
+            }
             if(c==3)
             break;
         }
+
+
+
         if(c==3)
         break;
     }
@@ -229,6 +261,14 @@ int main()
         SegundoCasoDisparo(DisparoO,DisparoD);
         break;
 
+    }
+    case 3:
+    {
+        dO DisparoO;
+        dD DisparoD;
+        Posicion_de_canon(DisparoD.Xd,DisparoD.Yd,DisparoD.estado);
+        Posicion_de_canon(DisparoO.Xo,DisparoO.Yo,DisparoO.estado);
+        TercerCasoDisparo(DisparoO,DisparoD);
     }
 
 
