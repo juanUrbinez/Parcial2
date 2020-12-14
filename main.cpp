@@ -66,7 +66,7 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
     int c=0;
     for (V=V0; ;V+=5)
     {
-        //cout<<"aaaaa"<<endl;
+
         for(angulo=0;angulo <90;angulo++)
         {
             Vx0= V*cos(angulo*M_PI/180); //calculando velocidad en x
@@ -78,13 +78,13 @@ int PrimercasoDisparo(dO DisparoO,dD DisparoD)
             {
                 x=Vx0*t;
                 y=DisparoO.Yo + Vy0*t -(0.5*g*pow(t,2));
-                cout<<(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2)))<<endl;
+
                 if(sqrt(pow((DisparoD.Xd-x),2)+pow((DisparoD.Yd-y),2))< DisparoO.rd)
                 {
                     if(y<0) y=0;
                     ImprimirImpacto(angulo,V,x,y,t);
                     c=c+1;
-                    V=V+50;
+                    V=V+10;
                     break;
                 }
                 if (y<0){
@@ -103,20 +103,19 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
 {
     srand(time(NULL));
     int V0=0;
-    V0=rand() %100+1;
+    V0=rand() %150+1;
     float x,y;
     float Vx0,Vy0;
     int t=0;
     int angulo;
     int V=V0;
     int c=0;
-    for (V=V0; ;V-=5)
+    for (V=V0; ;V+=5)
     {
-        //cout<<"aaaaa"<<endl;
          for(angulo=0;angulo <90;angulo++)
         {
-            //angulo=angulo+90;
-            Vx0= -V*cos((angulo)*M_PI/180); //calculando velocidad en x
+
+            Vx0= V*cos((angulo)*M_PI/180); //calculando velocidad en x
             Vy0= V*sin((angulo)*M_PI/180); //calculando velocidad en y
 
             x=0.0;
@@ -125,14 +124,14 @@ int SegundoCasoDisparo(dO DisparoO,dD DisparoD)
             {
                 x=-DisparoD.Xd+Vx0*t;
                 y=DisparoD.Yd + Vy0*t -(0.5*g*pow(t,2));
-                //cout<<(sqrt(pow((DisparoO.Xo-x),2)+pow((DisparoO.Yo-y),2)))<<endl;
+
 
                 if(sqrt(pow((DisparoO.Xo-x),2)+pow((DisparoO.Yo-y),2))< DisparoD.rd)
                 {
                     if(y<0) y=0;
                     ImprimirImpacto(angulo,V,x,y,t);
                     c=c+1;
-                    V=V-50;
+                    V=V+10;
                     break;
                 }
                 if (y<0){
